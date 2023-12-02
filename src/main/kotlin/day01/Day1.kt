@@ -2,7 +2,7 @@ package day01
 
 import InputReader
 
-fun String.asDigit(): Int = when(this) {
+private fun String.asDigit(): Int = when(this) {
     "one", "1" -> 1
     "two", "2" -> 2
     "three", "3" -> 3
@@ -21,7 +21,7 @@ fun String.asDigit(): Int = when(this) {
  *
  * Overlaps are possible.
  */
-fun String.lineNumber(regex: Regex = """\d""".toRegex()): Int {
+private fun String.lineNumber(regex: Regex = """\d""".toRegex()): Int {
     val matches = regex.findAll(this).toList()
 
     val first = matches.first().groupValues.last().asDigit()
@@ -30,7 +30,7 @@ fun String.lineNumber(regex: Regex = """\d""".toRegex()): Int {
     return first * 10 + last
 }
 
-fun main() {
+public fun main() {
     val lines = InputReader("inputs/day01/input.txt").lines()
 
     var sum1 = 0
