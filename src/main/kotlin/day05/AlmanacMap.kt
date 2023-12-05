@@ -1,25 +1,43 @@
 package day05
 
+import kotlin.math.sign
+
 internal class AlmanacMap(
-    private val entries: List<Entry>
+    entries: List<Entry>
 ) {
+    private val entries = entries.sortedBy { it.sourceStart }
+
     internal data class Entry(
         val destinationStart: Long,
         val sourceStart: Long,
         val rangeLength: Long,
     ) {
-        /** Returns the destination of the key if it belongs to the source range, or `null` otherwise */
-        fun match(key: Long): Long? =
-            if (key > sourceStart && key < sourceStart + rangeLength) {
+        private val sourceRange = sourceStart ..< sourceStart + rangeLength
+
+        /** Check if the source range contains the key */
+        fun contains(key: Long): Boolean = key in sourceRange
+
+        /** Returns the destination of the key, assuming the source range contains it */
+        fun transform(key: Long): Long =
+            if (this.contains(key)) {
                 destinationStart + (key - sourceStart)
             } else {
-                null
+                throw IllegalArgumentException("Cannot transform key outside of source range")
             }
     }
 
     fun get(key: Long): Long {
-        for (entry in entries) {
-            entry.match(key)?.let { return it } ?: continue
+        // search for the entry that would contain the key; negative idx means no matches were found
+        val idx = entries.binarySearch { entry ->
+            if (entry.contains(key)) {
+                0
+            } else {
+                (entry.sourceStart - key).sign
+            }
+        }
+
+        if (idx >= 0) {
+            return entries[idx].transform(key)
         }
         return key
     }
