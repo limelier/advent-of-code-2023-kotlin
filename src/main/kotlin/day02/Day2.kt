@@ -1,9 +1,9 @@
 package day02
 
-import InputReader
+import common.InputReader
 
 public fun main() {
-    val lines = InputReader("inputs/day02/input.txt").lines()
+    val lines = InputReader("day02/input.txt").lines()
     val games = lines.map(Game::parse)
 
     // part 1

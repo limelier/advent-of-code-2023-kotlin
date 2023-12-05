@@ -1,6 +1,6 @@
 package day03
 
-import InputReader
+import common.InputReader
 import kotlin.math.min
 import kotlin.math.max
 
@@ -14,7 +14,7 @@ private fun IntRange.intersect(other: IntRange): IntRange? {
 private typealias PartPos = Pair<Int, Int>
 
 public fun main() {
-    val matrix = InputReader("inputs/day03/input.txt").lines().map { it.toCharArray() }
+    val matrix = InputReader("day03/input.txt").lines().map { it.toCharArray() }
 
     // establish bounds
     val rowIndices = matrix.indices

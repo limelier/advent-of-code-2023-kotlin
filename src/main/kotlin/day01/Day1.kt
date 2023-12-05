@@ -1,6 +1,6 @@
 package day01
 
-import InputReader
+import common.InputReader
 
 private fun String.asDigit(): Int = when(this) {
     "one", "1" -> 1
@@ -31,7 +31,7 @@ private fun String.lineNumber(regex: Regex = """\d""".toRegex()): Int {
 }
 
 public fun main() {
-    val lines = InputReader("inputs/day01/input.txt").lines()
+    val lines = InputReader("day01/input.txt").lines()
 
     var sum1 = 0
     var sum2 = 0
