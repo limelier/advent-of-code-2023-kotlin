@@ -2,6 +2,8 @@ package day05
 
 import common.InputReader
 import common.split
+import day05.Domain.Companion.domain
+import day05.Interval.Companion.startInterval
 
 public fun main() {
     val lines = InputReader("day05/input.txt").lines()
@@ -10,6 +12,10 @@ public fun main() {
         .removePrefix("seeds: ")
         .split(" ")
         .map { it.toLong() }
+    val seedDomain = seeds
+        .chunked(2)
+        .map { it[0].startInterval(it[1]) }
+        .domain()
 
     val maps = lines
         .drop(2)
@@ -23,13 +29,18 @@ public fun main() {
                 .let { AlmanacMap(it) }
         }
 
-    val locations = seeds.map { seed ->
+    val locations1 = seeds.map { seed ->
         var value = seed
         for (map in maps) {
-            value = map.get(value)
+            value = map.apply(value)
         }
         value
     }
+    println("Part 1: ${locations1.min()}")
 
-    println("Part 1: ${locations.min()}")
+    var workingDomain = seedDomain
+    for (map in maps) {
+        workingDomain = map.apply(workingDomain)
+    }
+    println("Part 2: ${workingDomain.minimum}")
 }

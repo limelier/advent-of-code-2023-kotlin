@@ -1,15 +1,6 @@
 package day03
 
 import common.InputReader
-import kotlin.math.min
-import kotlin.math.max
-
-/** Find the range of the overlap between this and [other], if one exists */
-private fun IntRange.intersect(other: IntRange): IntRange? {
-    if (this.first > other.last) return null
-    if (this.last < other.first) return null
-    return max(first, other.first) .. min(last, other.last)
-}
 
 private typealias PartPos = Pair<Int, Int>
 
@@ -45,8 +36,8 @@ public fun main() {
             val number = numString.toInt()
 
             // scan for symbol in bounding box
-            val scanRows = rowIndices.intersect(r-1..r+1)!!
-            val scanCols = colIndices.intersect(c-1..cPastNumEnd)!!
+            val scanRows = rowIndices.intersect(r-1..r+1)
+            val scanCols = colIndices.intersect(c-1..cPastNumEnd)
             var hasSymbol = false
             symbolScan@ for (rScan in scanRows) {
                 for (cScan in scanCols) {
