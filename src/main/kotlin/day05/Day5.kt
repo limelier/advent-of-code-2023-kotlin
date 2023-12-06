@@ -4,6 +4,7 @@ import common.InputReader
 import common.split
 import day05.Domain.Companion.domain
 import day05.Interval.Companion.startInterval
+import kotlin.time.measureTime
 
 public fun main() {
     val lines = InputReader("day05/input.txt").lines()
@@ -38,9 +39,12 @@ public fun main() {
     }
     println("Part 1: ${locations1.min()}")
 
-    var workingDomain = seedDomain
-    for (map in maps) {
-        workingDomain = map.apply(workingDomain)
+    val time = measureTime {
+        var workingDomain = seedDomain
+        for (map in maps) {
+            workingDomain = map.apply(workingDomain)
+        }
+        println("Part 2: ${workingDomain.minimum}")
     }
-    println("Part 2: ${workingDomain.minimum}")
+    println(" It took $time!")
 }
