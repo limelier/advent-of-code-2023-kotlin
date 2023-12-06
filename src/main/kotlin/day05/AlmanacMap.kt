@@ -95,9 +95,9 @@ internal class AlmanacMap(
                 }
                 // remove handled parts from remaining
                 remaining = Interval(entry.source.upper + 1..remaining.upper)
-            } else {
-                entryIdx++
             }
+
+            entryIdx++
         }
         // add in leftover unhandled part without modifying it
         results += remaining
