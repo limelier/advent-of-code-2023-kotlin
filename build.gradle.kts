@@ -18,6 +18,6 @@ tasks.test {
 }
 
 kotlin {
-    jvmToolchain(8)
+    jvmToolchain(17)
     explicitApi()
 }
