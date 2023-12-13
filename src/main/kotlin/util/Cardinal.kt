@@ -12,8 +12,8 @@ internal enum class Cardinal { N, NE, E, SE, S, SW, W, NW;
         E -> W
         SE -> NW
         S -> N
-        SW -> TODO()
-        W -> TODO()
-        NW -> TODO()
+        SW -> NE
+        W -> E
+        NW -> SE
     }
 }
