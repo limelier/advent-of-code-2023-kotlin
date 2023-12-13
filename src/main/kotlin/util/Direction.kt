@@ -1,6 +1,6 @@
 package util
 
-internal enum class Cardinal { N, NE, E, SE, S, SW, W, NW;
+internal enum class Direction { N, NE, E, SE, S, SW, W, NW;
     companion object {
         val orthogonal = listOf(N, E, S, W)
         val diagonal = listOf(NE, SE, SW, NW)

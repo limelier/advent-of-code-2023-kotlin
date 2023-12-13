@@ -1,6 +1,6 @@
 package day10.tile
 
-import day10.tile.Direction.*
+import util.Direction
 
 internal enum class PipeTile : Tile {
     NorthSouth,
@@ -24,12 +24,12 @@ internal enum class PipeTile : Tile {
     }
 
     val connections: List<Direction> get() = when (this) {
-        NorthSouth -> listOf(North, South)
-        EastWest -> listOf(East, West)
-        NorthEast -> listOf(North, East)
-        SouthEast -> listOf(South, East)
-        SouthWest -> listOf(South, West)
-        NorthWest -> listOf(North, West)
+        NorthSouth -> listOf(Direction.N, Direction.S)
+        EastWest -> listOf(Direction.E, Direction.W)
+        NorthEast -> listOf(Direction.N, Direction.E)
+        SouthEast -> listOf(Direction.S, Direction.E)
+        SouthWest -> listOf(Direction.S, Direction.W)
+        NorthWest -> listOf(Direction.N, Direction.W)
     }
 
     override fun toString(): String = when(this) {
