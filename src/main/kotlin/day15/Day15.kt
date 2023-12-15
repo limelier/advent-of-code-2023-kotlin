@@ -52,6 +52,10 @@ internal fun main() {
         }
     }
 
-    val focusingPower = boxes.mapIndexed { i, box -> (i + 1) * box.mapIndexed { j, lens -> (j + 1) * lens.focalLength }.sum() }.sum()
+    val focusingPower = boxes.mapIndexed { i, box ->
+        (i + 1) * box.mapIndexed { j, lens ->
+            (j + 1) * lens.focalLength
+        }.sum()
+    }.sum()
     println("Part 2: $focusingPower")
 }
